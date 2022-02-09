@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-rabbitmq",
+  "version": "1.0.0",
+  "description": "rabbitmq implementation on nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "HOSTNAME=127.0.0.1 PORT=3003 AMQP_URI=amqp://localhost node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eduwardo/nodejs-rabbitmq.git"
+  },
+  "author": "Eduardo Mihalache",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eduwardo/nodejs-rabbitmq/issues"
+  },
+  "homepage": "https://github.com/Eduwardo/nodejs-rabbitmq#readme",
+  "dependencies": {
+    "amqplib": "^0.8.0"
+  }
+}
