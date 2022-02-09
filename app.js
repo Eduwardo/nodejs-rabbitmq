@@ -1,10 +1,8 @@
 const http = require('http');
+const { Channel } = require('./AMQP/module.js');
 
 const hostname = process.env.HOSTNAME;
 const port = process.env.PORT;
-
-const { Consumer, Publisher, Connection, Channel } = require('./AMQP/module.js');
-
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
