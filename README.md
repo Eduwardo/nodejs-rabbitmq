@@ -14,8 +14,18 @@ Install dependencies:
 ```bash
 npm install
 ```
-Run script:
+Application run script:
 
 ```bash
 npm run start
+```
+Run docker image of RabbitMQ with management:
+
+```bash
+docker run -d --hostname my-rabbit --name some-rabbit -p 5672:5672 -p 8080:15672 rabbitmq:3-management 
+```
+Dashboard management:
+
+```bash
+http://localhost:8080
 ```
