@@ -4,7 +4,7 @@ Implementing RabbitMQ with Node.js and Object-Oriented Design Pattern
 
 ## Installation
 
-Use the package manager [npm](https://www.npmjs.com/get-npm) to install nodejs-rabbitmq.
+Use the package manager [npm](https://www.npmjs.com/get-npm) to install rabbitmq-nodejs.
 
 ```bash
 npm install npm@latest -g
