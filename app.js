@@ -1,6 +1,5 @@
 const http = require('http');
-const { Channel } = require('./AMQP/module.js');
-
+const { Producer, Consumer } = require('./AMQP/module.js');
 const hostname = process.env.HOSTNAME;
 const port = process.env.PORT;
 const server = http.createServer((req, res) => {
@@ -13,17 +12,19 @@ server.listen(port, hostname, async () => {
   console.log(`Server running at http://${hostname}:${port}/ - ${new Date()}`);
 
   try {
-    let publisherConnection = new Channel();
-    await publisherConnection.start();
-    await publisherConnection.getChannel();
-    publisherConnection.publish('messages', 'Hello World');
-    
-    let consumerConnection = new Channel();
-    await consumerConnection.start();
-    await consumerConnection.getChannel();
-    consumerConnection.consume('messages');
+    const producer = new Producer();
+    await producer.getConnection();
+    setInterval(async () => {
+      await producer.publish('earth', `Hello world! ${new Date().toLocaleTimeString()}`);
+      setTimeout(async () => { await producer.publish('mars', `Hello mars! ${new Date().toLocaleTimeString()}`) }, 1500);
+      }, 3000);
+
+    const consumer = new Consumer();
+    await consumer.getConnection();
+    await consumer.consume('earth');
+    await consumer.consume('mars');
 
   } catch(err) {
-    console.log(`[APPLICATION] Error: ${err.message}`);
+    console.error(`[APPLICATION] Error: ${err.message}`);
   }
 });

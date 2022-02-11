@@ -1,21 +1,21 @@
-const Publisher = require('./publisher');
+const Channel = require('./channel');
 const amqp = require('amqplib');
 
-class Consumer extends Publisher {
+class Consumer extends Channel {
   constructor() {
     super();
   }
 
   async consume(queue) {
     try {
+        this.consumers.push(queue);
+        if (!this.channel) throw new Error('Channel unavailable');
         await this.channel.assertQueue(queue);
-        this.channel.consume(queue, (msg) => {
-          if (msg) {
-            console.log(`[CONSUME] Success: ${msg.content}`);
-          }
+        await this.channel.consume(queue, (msg) => {
+          console.log(`[AMQP] [CONSUME] Success: ${msg.content}`);
         }, { noAck: true });
     } catch(err) {
-      console.error(`[CONSUME] Error: ${err.message}`);
+      console.error(`[AMQP] [CONSUME] Error: ${err.message}`);
     } 
   }
 

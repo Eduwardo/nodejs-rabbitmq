@@ -1,6 +1,6 @@
 const Connection = require('./connection');
-const Publisher = require('./publisher');
+const Producer = require('./producer');
 const Consumer = require('./consumer');
 const Channel = require('./channel');
 
-module.exports = { Connection, Publisher, Consumer, Channel };
+module.exports = { Connection, Producer, Consumer, Channel };
