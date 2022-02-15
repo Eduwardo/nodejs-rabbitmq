@@ -1,4 +1,4 @@
-# nodejs-rabbitmq
+# rabbitmq-nodejs
 
 Implementing RabbitMQ with Node.js and Object-Oriented Design Pattern
 
